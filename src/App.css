@@ -1,38 +1,75 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.rock {
+    /* C8B686 */
+    background-color: hsl(44, 20%, 50%);
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .ghost {
+    /* 4C6AB2 */
+    background-color: hsl(222, 30%, 30%);
   }
-  to {
-    transform: rotate(360deg);
+  .electric {
+    /* FBD100 */
+    background-color: hsl(50, 100%, 39%);
   }
-}
+  .bug {
+    /* #83C300; */
+    background-color:hsl(80, 100%, 28%);
+  }
+  .poison {
+    /* B567CE */
+    background-color: hsl(285, 51%, 41%);
+  }
+  .normal {
+    /* 919AA2 */
+    background-color: hsl(208, 8%, 40%);
+  }
+  .fairy {
+    /* FB89EB */
+    background-color: hsl(308, 53%, 56%);
+  }
+  .fire {
+    /* FF9741 */
+    /* background-color: hsl(27, 70%, 53%); */
+    background-color: hsl(27deg 50% 65%);
+  }
+  .grass {
+    /* 38BF4B */
+    /* background-color: hsl(128, 50%, 38%); */
+    background-color: hsl(128deg 40% 65%);
+  }
+  .water {
+    /* 3692DC */
+    /* background-color: hsl(207, 70%, 44%); */
+    background-color: hsl(207deg 50% 75%);
+  }
+  .dark {
+    /* #5B5466 */
+    background-color: hsl(264, 10%, 28%)
+  }
+  .dragon {
+    /* 006FC9 */
+    background-color: hsl(207, 80%, 29%);
+  }
+  .fighting {
+    /* E0306A */
+    background-color: hsl(340, 54%, 33%);
+  }
+  .flying {
+    /*89AAE3  */
+    background-color: hsl(218, 62%, 51%);
+  }
+  .ground {
+    /* E87236 */
+    background-color: hsl(20, 79%, 36%);
+  }
+  .ice {
+    /* 4CD1C0 */
+    background-color: hsl(172, 49%, 76%);
+  }
+  .psychic {
+    /* FF6675 */
+    background-color: hsl(354, 40%, 50%);
+  }
+  .steel {
+    /* 5A8EA2 */
+    background-color: hsl(197, 29%, 39%);
+  }

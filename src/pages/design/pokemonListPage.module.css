@@ -1,0 +1,20 @@
+a {
+  text-decoration: none;
+}
+
+.backgroundImage {
+  position: fixed;
+  top: 30vh;
+  left: 55vw;
+  transform: rotate(-45deg);
+  width: 150vw;
+  z-index: -1;
+}
+
+@media screen and (min-width: 768px) {
+  .backgroundImage {
+    top: 10vh;
+    left: 60vw;
+    width: 70vw;
+  }
+}

@@ -1,0 +1,35 @@
+.multiplierContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.375em;
+}
+
+.damageMultiplierBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.25em;
+  border-radius: 4vw;
+}
+
+.pokemonUnitType {
+  width: 6vw;
+}
+
+@media screen and (min-width: 768px) {
+  .pokemonUnitType {
+    width: 1.5em;
+  }
+}
+
+.damageMultiplierBox p {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0 0.25em;
+  display: inline-block;
+  vertical-align: middle;
+  color: #ffffff;
+  font-weight: bold;
+}

@@ -1,0 +1,80 @@
+body {
+    background-color: hsl(0, 0%, 92%);
+}
+
+.backgroundImage {
+  position: fixed;
+  top: 20vh;
+  left: 55vw;
+  transform: rotate(-45deg);
+  width: 150vw;
+  z-index: -1;
+}
+
+@media screen and (min-width: 768px) {
+  .backgroundImage {
+    top: 10vh;
+    left: 60vw;
+    width: 70vw;
+  }
+}
+
+.informationBoxesContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 1em;
+    align-items: baseline;
+}
+
+@media screen and (min-width: 768px) {
+  .informationBoxesContainer {
+    padding: 3em;
+  }
+  
+}
+
+.informationBoxesContainer > div {
+    background-color: #ffffffdd;
+    border: 2px solid #d2d2d2; 
+    border-radius: 5px;
+    flex: 100%;
+    padding: 1em;
+}
+
+@media screen and (min-width: 768px){
+    .informationBoxesContainer > div {
+        flex: 1 1;
+        min-width: 310px;
+    }
+}
+
+.informationBoxesContainer h4 {
+  font-size: small;
+  color: #787878;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+td {
+  padding: 0.25em 0.875em;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+th {
+  color: #787878;
+  font-size: .875rem;
+  text-align: center;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+table > tbody > tr:first-child > td, table > tbody> tr:first-child > th, table > thead> tr:first-child > td, table > thead> tr:first-child > th {
+  border-top: 1px solid #dfdfdf;
+}
+

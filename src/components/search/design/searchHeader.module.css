@@ -1,0 +1,34 @@
+.searchContainer {
+    position: fixed;
+    top: 0;
+    width: 98%;
+    padding: 1em 1%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 40px #3d3d3d;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+    .searchContainer {
+        flex-direction: row;
+    }
+}
+
+.searchArea {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 2em;
+}
+
+.searchArea::placeholder {
+    color: #9d9d9d;
+}
+
+.headerText {
+    font-size: 2em;
+    color: #9d9d9d;
+    margin-top: 0;
+    margin-bottom: 0;
+}

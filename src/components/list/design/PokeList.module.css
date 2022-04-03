@@ -1,0 +1,16 @@
+.listBox {
+    margin-top: 7em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+@media screen and (min-width: 768px) {
+    .listBox {
+        margin-top: 5em;
+        flex-direction: row;
+    }
+}

@@ -1,0 +1,35 @@
+.statsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.statsContainer p {
+    margin: 0;
+}
+
+
+.statsValueText {
+    text-align: center;
+}
+
+.statBarContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.statBar {
+    min-width: 100px;
+    max-width: 250px;
+    height: 5px;
+    border-radius: 2px;
+    background-color: lightgray;
+    margin: 0 0.5em;
+}
+
+.statBar > div {
+    background-color: green;
+    height: 100%;
+    border-radius: 2px;
+}
