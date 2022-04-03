@@ -10,7 +10,7 @@ import { actionCreatorElement } from "./redux/actionCombinerElement";
 import PokemonListPage from "./pages/pokemonListPage";
 import PokemonDetailPage from "./pages/pokemonDetailedPage";
 
-import "./app.css";
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
