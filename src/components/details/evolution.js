@@ -1,55 +1,191 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+import { CapitalFirstLetter } from "../../service/helper";
+import classes from "./design/evolution.module.css";
 
 import TabletHeadline from "./InfoTabletTemplate/tabletHeadline";
 import TabletContent from "./InfoTabletTemplate/tabletContent";
 
-function evolution({ evolutionChain }) {
-  HandleEvolutionChainInformation(evolutionChain.chain);
+function evolution({
+  evolutionChain,
+  reduxPokemonList,
+  reduxElementList,
+  mainPokemon,
+}) {
+  console.log(HandleEvolutionChainInformation(evolutionChain.chain));
 
-  function HandleEvolutionChainInformation(
-    evolveInfo,
-    evolutionArray = [],
-    runthrough = 1
-  ) {
-    evolutionArray.push(`${evolveInfo.species.name} `);
-    console.log(`${evolveInfo.species.name} - ${runthrough}`);
+  const updatedEvolution = HandleEvolutionChainInformation(
+    evolutionChain.chain
+  );
+
+  function FindChosenPokemon(findPokemon) {
+    return reduxPokemonList.find((pokemon) => pokemon.name === findPokemon);
+  }
+
+  function HandleEvolutionChainInformation(evolveInfo) {
+    let tempEvolution = [];
     if (evolveInfo.evolves_to.length > 0) {
-      //Checks all possible evolutions during this stage
       for (let i = 0; i < evolveInfo.evolves_to.length; i++) {
-        //Checks for multiple credentials
-        // for (let j = 0; j < evolveInfo.evolves_to[i].evolution_details.length; j++) 
-        for(let levelCred of evolveInfo.evolves_to[i].evolution_details)
-        {
-          
-          // if(levelCred.trigger.name !== 'level-up') console.log(levelCred.trigger.name);
-
-          if(levelCred.held_item !== null) console.log('holding: ' + levelCred.held_item.name);
-          else if(levelCred.item !== null) console.log('use ' + levelCred.item.name);
-          else if (levelCred.min_level !== null) console.log(levelCred.min_level);
-
-          // console.log(levelCred);
-            // console.log(evolveInfo.evolves_to[i].evolution_details[j]);
-          
-        }
-        HandleEvolutionChainInformation(
-          evolveInfo.evolves_to[i],
-          evolutionArray,
-          runthrough + 1
+        tempEvolution.push(
+          HandleEvolutionChainInformation(evolveInfo.evolves_to[i])
         );
       }
-    } else {
-      // for (let pokemon of evolutionArray) {
-      //   fetch(`${api}pokemon/${pokemon}`)
-      //   .then((response) => response.json())
-      //   .then((data) => {setPokemonEvolution(...pokemonEvolution, data)})
-      // }
     }
+
+    let atmPokemon = {
+      pokemon: FindChosenPokemon(evolveInfo.species.name),
+      evolution_details:
+        evolveInfo.evolution_details.length > 0
+          ? {
+              min_level:
+                evolveInfo.evolution_details === undefined
+                  ? null
+                  : evolveInfo.evolution_details[0].min_level,
+              trigger_name:
+                evolveInfo.evolution_details === undefined
+                  ? null
+                  : evolveInfo.evolution_details[0].trigger.name,
+              item:
+                evolveInfo.evolution_details === undefined
+                  ? null
+                  : evolveInfo.evolution_details[0].item,
+              hold_item:
+                evolveInfo.evolution_details === undefined
+                  ? null
+                  : evolveInfo.evolution_details[0].held_item,
+            }
+          : null,
+      evolves_to: tempEvolution,
+    };
+
+    return atmPokemon;
   }
+
+  function componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
+  function EvolutionPartLayout(pokemonEvolutionDisplay, count = 1, index = 0) {
+    return (
+      <>
+        <div
+          className={classes.evolution_to_box}
+          key={pokemonEvolutionDisplay.pokemon.name}
+        >
+          {pokemonEvolutionDisplay.evolution_details !== null ? (
+            <div className={classes.evolutionCondition}>
+              {count > 1 ? (
+                index < count / 2 ? (
+                  <p className={classes.arrowUP} key="arrowUP">
+                    {" "}
+                  </p>
+                ) : (
+                  <p className={classes.arrowDOWN}> </p>
+                )
+              ) : (
+                <p className={classes.arrow} key="arrowDOWN">
+                  {" "}
+                </p>
+              )}
+
+              {pokemonEvolutionDisplay.evolution_details.min_level !== null ? (
+                <p key="level">
+                  Level: {pokemonEvolutionDisplay.evolution_details.min_level}
+                </p>
+              ) : null}
+              {pokemonEvolutionDisplay.evolution_details.trigger_name ===
+              "trade" ? (
+                <p key="teade">Trade</p>
+              ) : null}
+              {pokemonEvolutionDisplay.evolution_details.item !== null ? (
+                <p key="item">
+                  Use{" "}
+                  {CapitalFirstLetter(
+                    pokemonEvolutionDisplay.evolution_details.item.name
+                  )}
+                </p>
+              ) : null}
+              {pokemonEvolutionDisplay.evolution_details.hold_item !== null ? (
+                <p key="holding">
+                  Holding:{" "}
+                  {CapitalFirstLetter(
+                    pokemonEvolutionDisplay.evolution_details.hold_item
+                  )}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+          <Link to={`/${pokemonEvolutionDisplay.pokemon.name}`}>
+            <div className={classes.evolutionDetailedInfo}>
+              <img
+                className={classes.evolutionPicture}
+                src={
+                  pokemonEvolutionDisplay.pokemon.sprites.other[
+                    "official-artwork"
+                  ].front_default
+                }
+                alt=""
+              />
+              <p
+                className={classes.evolution_Text_Id}
+                key={`id: ${pokemonEvolutionDisplay.pokemon.id}`}
+              >
+                #{pokemonEvolutionDisplay.pokemon.id}
+              </p>
+              <p
+                className={classes.evolution_Text_Name}
+                key={`evolution: ${pokemonEvolutionDisplay.pokemon.name}`}
+              >
+                {CapitalFirstLetter(pokemonEvolutionDisplay.pokemon.name)}
+              </p>
+              <div className={classes.evolution_Types}>
+                {pokemonEvolutionDisplay.pokemon.types.map((element) => {
+                  return (
+                    <p
+                      className={classes.evolution_Text_Types}
+                      key={`type: ${element.type.name} - ${pokemonEvolutionDisplay.pokemon.name}`}
+                    >
+                      {CapitalFirstLetter(element.type.name)}
+                    </p>
+                  );
+                })}
+              </div>
+            </div>
+          </Link>
+
+          <div className={classes.evolution_split}>
+            {pokemonEvolutionDisplay.evolves_to.length > 0
+              ? (pokemonEvolutionDisplay.evolves_to.map(
+                    (evolution1, index) => {
+                      return (
+                        <div key={evolution1.pokemon.name}>
+                          {EvolutionPartLayout(
+                            evolution1,
+                            pokemonEvolutionDisplay.evolves_to.length,
+                            index
+                          )}
+                        </div>
+                      );
+                    }
+                  ))
+              : null}
+          </div>
+        </div>
+      </>
+    );
+  }
+  console.log(updatedEvolution);
 
   return (
     <div>
       <TabletHeadline>Evolution</TabletHeadline>
-      <TabletContent></TabletContent>
+      <TabletContent>
+        <div className={classes.evolution_to_box}>
+          {EvolutionPartLayout(updatedEvolution)}
+          {componentDidMount()}
+        </div>
+      </TabletContent>
     </div>
   );
 }

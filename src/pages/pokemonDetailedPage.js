@@ -28,8 +28,8 @@ function PokemonDetailedPage() {
 
   if (true) {
     // console.log(params.infoId);
-    // console.log("chosenPokemon:");
-    // console.log(chosenPokemon);
+    console.log("chosenPokemon:");
+    console.log(chosenPokemon);
     // console.log("Species");
     // console.log(pokemonSpecies.current);
     // console.log("Evolution");
@@ -126,7 +126,7 @@ function PokemonDetailedPage() {
             reduxElement={reduxElementList}
           />
           <Abilities chosenPokemon={chosenPokemon} />
-          <Evolution evolutionChain={pokemonEvolution} />
+          <Evolution evolutionChain={pokemonEvolution} reduxPokemonList={reduxPokemonList} reduxElementList={reduxElementList} mainPokemon={chosenPokemon}/>
         </div>
       </>
     );

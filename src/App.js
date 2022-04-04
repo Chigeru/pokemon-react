@@ -10,7 +10,7 @@ import { actionCreatorElement } from "./redux/actionCombinerElement";
 import PokemonListPage from "./pages/pokemonListPage";
 import PokemonDetailPage from "./pages/pokemonDetailedPage";
 
-import "./App.css";
+import "./app.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      let response = await getInfoFromUrl(`${api}/pokemon?limit=300`);
+      let response = await getInfoFromUrl(`${api}/pokemon?limit=898`);
       await loadPokemons(response.results);
       let elementResponse = await getInfoFromUrl(`${api}/type`);
       await loadElements(elementResponse.results);
