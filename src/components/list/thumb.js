@@ -1,6 +1,5 @@
 import React from "react";
 import { CapitalFirstLetter, ThreeDigitNumber } from "../../service/helper";
-// import { useGetPokemonByNameQuery } from '../../redux/pokeApi'
 import { Link } from 'react-router-dom'
 
 import classes from "./design/PokeListItems.module.css";
@@ -38,12 +37,6 @@ function PokeListItem({ pokemonInfo }) {
     </div>
     </Link>
   );
-
-  /* ------------------------------------- */
-
-  // return (
-  //     <p>{pokemonInfo.name}<br/></p>
-  // )
 }
 
 export default PokeListItem;

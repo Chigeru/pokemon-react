@@ -5,8 +5,6 @@ import { CapitalFirstLetter, NameAbbreviations } from "../../service/helper";
 import TabletHeadline from "./InfoTabletTemplate/tabletHeadline";
 import TabletContent from "./InfoTabletTemplate/tabletContent";
 
-// import classes from './design/CategoryGeneralStyling.module.css'
-
 function Description({ id, pokemonName, types, generation, weight, height, abilities }) {
   
   function AboutTypes() {
@@ -20,21 +18,10 @@ function Description({ id, pokemonName, types, generation, weight, height, abili
     return typeString;
   }
   
-  function ConvertHeight() {
-    return height
-  }
-  
-
   function ConvertWeight() {
     return (weight / 0.45359237 /10).toFixed(1);
   }
 
-  // function calcGeneration() {
-  //   let romanianNumbers = {'i': 1, 'v': 5, 'x': 10, 'l': 50};
-  //   let generationNumber = generation.name.split('-')[1];
-  //   let sum = 0;
-    
-  // }
   return (
     <div>
       <TabletHeadline>About</TabletHeadline>

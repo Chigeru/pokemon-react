@@ -4,12 +4,9 @@ import classes from "./design/PokemonDisplay.module.css";
 import {CapitalFirstLetter, NameAbbreviations} from '../../service/helper'
 
 function PokemonDisplay({ name, image, types, id }) {
-
-    let cssName = classes.displayBackground;
-    // cssName += ' ' + types[0].type.name;
       return (
         <>
-          <div className={cssName}>
+          <div className={classes.displayBackground}>
             <img className={classes.displayImg} src={image} alt={name} />
             <p className={classes.idText}>#{id}</p>
             <p className={classes.nameText}>{CapitalFirstLetter(NameAbbreviations(name))}</p>

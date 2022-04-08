@@ -24,23 +24,6 @@ function PokemonDetailedPage() {
   const pokemonSpecies = useRef();
   const [pokemonEvolution, setPokemonEvolution] = useState();
 
-  /* ---------------- Data check ----------------------*/
-
-  if (true) {
-    // console.log(params.infoId);
-    // console.log("chosenPokemon:");
-    // console.log(chosenPokemon);
-    // console.log("Species");
-    // console.log(pokemonSpecies.current);
-    // console.log("Evolution");
-    // console.log(pokemonEvolution);
-    // console.log("Elements");
-    // console.log(pokemonsElements);
-    // console.log('redux - ElementList');
-    // console.log(reduxElementList);
-    console.log("------------------------------------------");
-  }
-
   //Fill informations for species & evolution when chosenPokemon changes
   useEffect(() => {
     function FetchSpecies() {
@@ -85,15 +68,6 @@ function PokemonDetailedPage() {
       }
       return elementList;
     } else return 0;
-  }
-
-  
-
-  //For description section
-  function FlavorTextFindChosenLanguage() {
-    return pokemonSpecies.current.flavor_text_entries.find(
-      (flavortext) => flavortext.language.name === "en"
-    ).flavor_text;
   }
 
   if (pokemonEvolution !== undefined && reduxElementList.length !== 0) {
