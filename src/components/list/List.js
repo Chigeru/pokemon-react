@@ -1,23 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
-// import ListItem from './thumb'
 import ListItem from "./thumb";
 import Loading from "../loading/loading";
 
 import classes from "./design/PokeList.module.css";
 
-function List({ FindMatches }) {
-  const reduxPokemonList = useSelector((state) => state.pokemonList);
-
+function List({ pokemonList }) {
   
-  console.log(FindMatches(reduxPokemonList));
-
   return (
     <div className={classes.listBox}>
-      {reduxPokemonList.length === 0 ? (
+      {pokemonList.length === 0 ? (
         <Loading />
       ) : (
-        reduxPokemonList.map((pokemonSingleInfo, id) => {
+        pokemonList.map((pokemonSingleInfo, id) => {
           return <ListItem pokemonInfo={pokemonSingleInfo} key={id} />;
         })
       )}

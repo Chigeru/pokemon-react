@@ -1,5 +1,7 @@
 import React from "react";
 
+import { CapitalFirstLetter } from '../../service/helper'
+
 import TabletHeadline from "./InfoTabletTemplate/tabletHeadline";
 import TabletContent from "./InfoTabletTemplate/tabletContent";
 
@@ -17,7 +19,7 @@ function stats({ stats }) {
                 return (
                   <tr key={stat.stat.name}>
                     <th>
-                      {stat.stat.name}
+                      {CapitalFirstLetter(stat.stat.name.replaceAll("-", " "))}
                     </th>
                     <td>
                       <p className={classes.statsValueText}>{stat.base_stat}</p>

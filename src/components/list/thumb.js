@@ -20,7 +20,7 @@ function PokeListItem({ pokemonInfo }) {
       />
       <div className={classes.shortInformations}>
         <p className={classes.pokemonUnitName}>
-          {CapitalFirstLetter(pokemonInfo.name)}
+          {CapitalFirstLetter(pokemonInfo.species.name.replaceAll("-", " "))}
         </p>
         <div className={classes.typesContainer}>
           <div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import SearchHeader from "../components/search/SearchHeader";
 import PokeList from '../components/list/List'
 
@@ -8,22 +8,31 @@ import classes from "./design/pokemonListPage.module.css";
 
 function PokemonListPage() {
 
+  const reduxPokemonList = useSelector((state) => state.pokemonList);
+  const [filteredPokemonList, setFilteredPokemonList] = useState([]);
+  
 
-  function FindMatches(pokemonsRemain, wordToMatch = '') {
-    // return pokemonsRemain.filter((poke) => {
-    //   const regex = new RegExp(wordToMatch, "gi");
-    //   const regexExactList = new RegExp("^" + wordToMatch, "gi");
+  useEffect(() => {
+    setFilteredPokemonList(reduxPokemonList);
+  },[reduxPokemonList])
 
-    //   return poke.name.match(regexExactList) || poke.id.match(regex);
-    // });
-    return 'find matches'
+  function FindMatches(wordToMatch = '') {
+    let test = reduxPokemonList.filter((poke) => {
+      const regexExactList = new RegExp("^" + wordToMatch, "gi");
+      return poke.name.match(regexExactList); 
+    })
+    setFilteredPokemonList(test);
   }
+
+  
 
   return (
     <>
       <img className={classes.backgroundImage} src={`${process.env.PUBLIC_URL}/images/headerPokeball.svg`} alt='nothing'/>
-      <SearchHeader />
-      <PokeList FindMatches={FindMatches} />
+      <SearchHeader  FindMatches={FindMatches}/>
+      <div className={classes.center_content_container}>
+      <PokeList pokemonList={filteredPokemonList}/>
+      </div>
     </>
   );
 }

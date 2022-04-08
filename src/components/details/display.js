@@ -1,7 +1,7 @@
 import React from "react";
 
 import classes from "./design/PokemonDisplay.module.css";
-import {CapitalFirstLetter} from '../../service/helper'
+import {CapitalFirstLetter, NameAbbreviations} from '../../service/helper'
 
 function PokemonDisplay({ name, image, types, id }) {
 
@@ -12,7 +12,7 @@ function PokemonDisplay({ name, image, types, id }) {
           <div className={cssName}>
             <img className={classes.displayImg} src={image} alt={name} />
             <p className={classes.idText}>#{id}</p>
-            <p className={classes.nameText}>{CapitalFirstLetter(name)}</p>
+            <p className={classes.nameText}>{CapitalFirstLetter(NameAbbreviations(name))}</p>
               <div className={classes.elementContainer}>
                 {types.map((elementType) => {
                   return (<div key={id + elementType.type.name}>

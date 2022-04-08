@@ -11,4 +11,21 @@ export function ThreeDigitNumber(number) {
   return number;
 }
 
-export const api = 'https://pokeapi.co/api/v2';
+export function NameAbbreviations(name) {
+  let newName = name.split("-",);
+  let fullName = "";
+
+  for(let i = 0; i < newName.length; i++) {
+    if(i > 0) {
+      fullName += " ";
+  }
+    fullName += newName[i];
+    if(newName[i] === "mr" || newName[i] === "jr") {
+      fullName += ".";
+    }
+  }
+
+  return fullName;
+}
+
+export const api = "https://pokeapi.co/api/v2";

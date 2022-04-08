@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -28,8 +28,8 @@ function PokemonDetailedPage() {
 
   if (true) {
     // console.log(params.infoId);
-    console.log("chosenPokemon:");
-    console.log(chosenPokemon);
+    // console.log("chosenPokemon:");
+    // console.log(chosenPokemon);
     // console.log("Species");
     // console.log(pokemonSpecies.current);
     // console.log("Evolution");
@@ -41,10 +41,30 @@ function PokemonDetailedPage() {
     console.log("------------------------------------------");
   }
 
-  //Fill informations for species & evolution
-  if (pokemonSpecies.current === undefined && chosenPokemon !== 0) {
+  //Fill informations for species & evolution when chosenPokemon changes
+  useEffect(() => {
+    function FetchSpecies() {
+      if (chosenPokemon !== 0) {
+        fetch(`${api}/pokemon-species/${chosenPokemon.id}`)
+          .then((response) => response.json())
+          .then((data) => {
+            pokemonSpecies.current = data;
+            FetchEvolution(data.evolution_chain.url);
+            return data;
+          });
+      } else return 0;
+    }
+  
+    function FetchEvolution(url) {
+      fetch(`${url}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setPokemonEvolution(data);
+          return data;
+        });
+    }
     FetchSpecies();
-  }
+  }, [chosenPokemon])
 
   //Find the chosen pokemon from all of the pokemons stored in redux
   function FindChosenPokemon() {
@@ -67,26 +87,7 @@ function PokemonDetailedPage() {
     } else return 0;
   }
 
-  function FetchSpecies() {
-    if (chosenPokemon !== 0) {
-      fetch(`${api}/pokemon-species/${chosenPokemon.id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          pokemonSpecies.current = data;
-          FetchEvolution(data.evolution_chain.url);
-          return data;
-        });
-    } else return 0;
-  }
-
-  function FetchEvolution(url) {
-    fetch(`${url}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setPokemonEvolution(data);
-        return data;
-      });
-  }
+  
 
   //For description section
   function FlavorTextFindChosenLanguage() {
@@ -103,8 +104,9 @@ function PokemonDetailedPage() {
           src={`${process.env.PUBLIC_URL}/images/headerPokeball.svg`}
           alt=""
         />
+        <div className={classes.center_content_container}>
         <Display
-          name={chosenPokemon.name}
+          name={chosenPokemon.species.name}
           image={chosenPokemon.sprites.other["official-artwork"].front_default}
           types={chosenPokemon.types}
           id={chosenPokemon.id}
@@ -112,7 +114,7 @@ function PokemonDetailedPage() {
         <div className={classes.informationBoxesContainer}>
           <Description
             id={chosenPokemon.id}
-            pokemonName={chosenPokemon.name}
+            pokemonName={chosenPokemon.species.name}
             types={chosenPokemon.types}
             generation={pokemonSpecies.current.generation}
             weight={chosenPokemon.weight}
@@ -126,7 +128,8 @@ function PokemonDetailedPage() {
             reduxElement={reduxElementList}
           />
           <Abilities chosenPokemon={chosenPokemon} />
-          <Evolution evolutionChain={pokemonEvolution} reduxPokemonList={reduxPokemonList} reduxElementList={reduxElementList} mainPokemon={chosenPokemon}/>
+          <Evolution evolutionChain={pokemonEvolution} reduxPokemonList={reduxPokemonList} mainPokemon={chosenPokemon}/>
+        </div>
         </div>
       </>
     );

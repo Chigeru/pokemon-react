@@ -3,22 +3,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  gap: 2em;
+  /* width: 100%; */
+  /* gap: 2em; */
 }
 
 @media screen and (min-width: 768px){
   .evolution_to_box {
     flex-direction: row;
+    gap: 2em;
   }
 }
 
 .evolutionCondition {
   display: flex;
-  flex-direction: row;
-  margin-left: 10vw;
+  flex-direction: column;
+  /* margin-left: 10vw; */
   align-items: center;
-  width: 4em;
 }
 
 @media screen and (min-width: 768px) {
@@ -31,22 +31,16 @@
 
 .evolutionCondition p {
   margin: 0;
+  font-size: 0.75em;
+  text-align: center;
 }
 
-.evolutionPicture {
-  width: 40vw;
+.evolutionCondition > div > p:first-child::before {
+  content: "(";
 }
 
-@media screen and (min-width: 768px) {
-  .evolutionPicture {
-    width: 12vw
-  }
-}
-
-@media screen and (min-width: 1183px){
-  .evolutionPicture {
-    width: 6vw;
-  }
+.evolutionCondition > div > p:last-child::after {
+  content: ")";
 }
 
 .arrow::before {
@@ -86,6 +80,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+.evolutionPicture {
+  width: 24vw;
+}
+
+@media screen and (min-width: 768px) {
+  .evolutionPicture {
+    width: 12vw
+  }
+}
+
+@media screen and (min-width: 1165px){
+  .evolutionPicture {
+    width: 6vw;
+  }
 }
 
 .evolutionDetailedInfo p {
@@ -114,11 +125,16 @@
 .evolution_split {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
 }
 
 @media screen and (min-width: 768px) {
   .evolution_split {
     flex-direction: column;
+    gap: 1em;
   }
   
 }
+

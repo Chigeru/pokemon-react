@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CapitalFirstLetter } from "../../service/helper";
+import { CapitalFirstLetter, NameAbbreviations } from "../../service/helper";
 
 import TabletHeadline from "./InfoTabletTemplate/tabletHeadline";
 import TabletContent from "./InfoTabletTemplate/tabletContent";
@@ -35,12 +35,11 @@ function Description({ id, pokemonName, types, generation, weight, height, abili
   //   let sum = 0;
     
   // }
-  
   return (
     <div>
       <TabletHeadline>About</TabletHeadline>
       <TabletContent>
-        <p>{CapitalFirstLetter(pokemonName)} is a {AboutTypes()} type Pokémon introduced in generation {generation.name.split('-')[1].toUpperCase()}</p>
+        <p>{CapitalFirstLetter(NameAbbreviations(pokemonName))} is a {AboutTypes()} type Pokémon introduced in generation {generation.name.split('-')[1].toUpperCase()}</p>
         <table>
           <tbody>
             <tr>
@@ -68,7 +67,7 @@ function Description({ id, pokemonName, types, generation, weight, height, abili
                 {abilities.map((move) => {
                   return (
                   <p key={move.ability.name}>
-                    {CapitalFirstLetter(move.ability.name)}
+                    {CapitalFirstLetter(move.ability.name.replaceAll("-", " "))}
                     {move['is_hidden'] ? ' - (Hidden Ablility)' : ''}
                   </p>);
                 })}
